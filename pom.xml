@@ -37,6 +37,11 @@
 	<artifactId>persistence-api</artifactId>
 	<version>1.0-rev-1</version>
 </dependency>
+            <dependency>
+	<groupId>org.aspectj</groupId>
+	<artifactId>aspectjtools</artifactId>
+	<version>1.6.2</version>
+</dependency>
             
   	<dependency>
   		<groupId>org.springframework</groupId>
@@ -63,7 +68,12 @@
 		<artifactId>hibernate</artifactId>
 		<version>3.2.5.ga</version>
 	</dependency>
-            
 
-  </dependencies>
+
+<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-tx</artifactId>
+	<version>4.0.3.RELEASE</version>
+</dependency>
+              </dependencies>
 </project>

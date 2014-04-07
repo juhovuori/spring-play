@@ -5,7 +5,9 @@ import java.util.Collection;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 public class HibernateMunaDao implements MunaDao {
 	
 	@Autowired
@@ -15,6 +17,7 @@ public class HibernateMunaDao implements MunaDao {
 	    return sessionFactory.getCurrentSession();
 	}
 
+	@Transactional
 	public Muna getMuna(long id) {
 
 		if (id >= 100) return null;
@@ -23,14 +26,17 @@ public class HibernateMunaDao implements MunaDao {
 
 	}
 	
+	@Transactional
 	public Collection<Integer> getMunas() {
 		return null;
 	}
 	
+	@Transactional
 	public void storeMuna(Muna muna) {
 		
 	}
 
+	@Transactional
 	public void removeMuna(Muna muna) {
 		
 	}
