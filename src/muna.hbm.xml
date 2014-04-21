@@ -4,7 +4,7 @@
  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-   <class name="com.munamuna.Muna" table="MUNA">
+   <class name="com.munamuna.Muna" table="muna">
       <meta attribute="class-description">
          This class contains the muna details. 
       </meta>

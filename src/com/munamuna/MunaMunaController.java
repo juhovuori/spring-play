@@ -1,5 +1,6 @@
 package com.munamuna;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,13 +37,15 @@ public class MunaMunaController {
 	@RequestMapping(value = "/muna/{id}", method = RequestMethod.GET)
 	public String getMuna(@PathVariable("id") long id, ModelMap model) {
 		Muna muna;
+		JSONObject o = new JSONObject();
 		muna = this.dao.getMuna(id);
-		if (muna == null) {
-			model.addAttribute("data", "{}");
-		} else {
+		if (muna != null) {
+			o.put("id", muna.id);
+			o.put("text", muna.text);
+			o.put("date", muna.date);
 			model.addAttribute("data","{id:" + muna.id + "}");
 		};
-		//JSONObject o = new JSONObject();
+		model.addAttribute("data", o.toString());
 		return "muna";
 	}
 

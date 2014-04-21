@@ -18,6 +18,8 @@ public class Muna {
 	public Date getDate() { return this.date; }
 	public void setDate(Date date) { this.date = date; }
 
+	public Muna() { }
+	
 	public Muna(long id, String text, Date date) {
 		this.id = id;
 		this.text = text;
