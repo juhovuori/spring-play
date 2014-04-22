@@ -9,7 +9,9 @@
          This class contains the muna details. 
       </meta>
       <id name="id" type="long" column="id">
-         <generator class="native"/>
+         <generator class="sequence">
+	         <param name="sequence">muna_id_seq</param>
+         </generator>
       </id>
       <property name="text" column="text" type="string"/>
       <property name="date" column="date" type="date"/>

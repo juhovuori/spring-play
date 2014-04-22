@@ -33,7 +33,7 @@ public class HibernateMunaDao implements MunaDao {
 	
 	@Transactional
 	public void storeMuna(Muna muna) {
-		
+		getSession().saveOrUpdate(muna);
 	}
 
 	@Transactional

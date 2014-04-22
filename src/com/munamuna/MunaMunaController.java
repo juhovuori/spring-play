@@ -1,10 +1,15 @@
 package com.munamuna;
 
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,9 +33,25 @@ public class MunaMunaController {
 	}
 
 	@RequestMapping(value = "/muna", method = RequestMethod.POST)
-	public String postMuna(@PathVariable("id") long id, ModelMap model) {
-		model.addAttribute("data", "{id:'new'}");
+	public String postMuna(@RequestBody final String request, ModelMap model) {
+		System.out.println(request);
 		
+		JSONObject o = new JSONObject(request);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+		String text = o.getString("text");
+		Date date;
+		try {
+			date = format.parse(o.getString("date"));
+		} catch (ParseException e) {
+			model.addAttribute("data", "{status:'fail date'}");
+			return "muna";
+		}
+
+		model.addAttribute("data", "{status:'ok'}");
+		Muna muna = new Muna();
+		muna.setText(text);
+		muna.setDate(date);
+		this.dao.storeMuna(muna);
 		return "muna";
 	}
 
@@ -50,9 +71,26 @@ public class MunaMunaController {
 	}
 
 	@RequestMapping(value = "/muna/{id}", method = RequestMethod.PUT)
-	public String putMuna(@PathVariable("id") long id, ModelMap model) {
-		model.addAttribute("data", "");
+	public String putMuna(@PathVariable("id") long id, @RequestBody final String request, ModelMap model) {
+		JSONObject o = new JSONObject(request);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+		String text = o.getString("text");
+		Date date;
+		Long id2 = o.getLong("id");
+		if (id2 != id) {
+			model.addAttribute("data", "{status:'wrong id'}");
+			return "muna";
+		}
+		try {
+			date = format.parse(o.getString("date"));
+		} catch (ParseException e) {
+			model.addAttribute("data", "{status:'fail date'}");
+			return "muna";
+		}
 
+		model.addAttribute("data", "{status:'ok'}");
+		Muna muna = new Muna(id, text, date);
+		this.dao.storeMuna(muna);
 		return "muna";
 	}
 

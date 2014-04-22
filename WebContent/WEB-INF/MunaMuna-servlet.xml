@@ -28,6 +28,7 @@
     <property name="hibernateProperties">
       <value>
         hibernate.dialect=org.hibernate.dialect.HSQLDialect
+        hibernate.show_sql=true
       </value>
     </property>
           
@@ -39,6 +40,7 @@
 		<property name="url" value="jdbc:postgresql://localhost:5432/muna" />
 		<property name="username" value="muna" />
 		<property name="password" value="munapwd" />
+		
 	</bean>
 
   <aop:config>
